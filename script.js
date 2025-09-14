@@ -9,6 +9,27 @@
     let touchStartY = 0;
     
     // Helper functions
+    (function(){
+  const imgs = document.querySelectorAll('img[data-src], img[data-srcset]');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const img = e.target;
+          if (img.dataset.src) img.src = img.dataset.src;
+          if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+          obs.unobserve(img);
+        }
+      });
+    }, {rootMargin: '0px 0px 200px 0px'});
+    imgs.forEach(img => io.observe(img));
+  } else {
+    imgs.forEach(img => {
+      if (img.dataset.src) img.src = img.dataset.src;
+      if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+    });
+  }
+})();
     function debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -141,6 +162,30 @@
         });
         
         // Toggle current FAQ
+(function () {
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach((item, i) => {
+    const btn = item.querySelector('.faq-question');
+    const panel = item.querySelector('.faq-answer');
+    if (!btn || !panel) return;
+    const panelId = panel.id || `faq-answer-${i+1}`;
+    panel.id = panelId;
+    btn.setAttribute('aria-controls', panelId);
+    btn.setAttribute('aria-expanded', 'false');
+    btn.addEventListener('click', () => toggle());
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+    function toggle() {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      panel.classList.toggle('open', !open);
+      if (!open) panel.focus({preventScroll:true});
+    }
+    panel.setAttribute('tabindex','-1');
+  });
+})();
+        
         if (isOpen) {
             closeFAQ(targetItem);
         } else {
