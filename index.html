@@ -46,10 +46,14 @@
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <picture class="hero-picture">
-                        <source srcset="assets/hero-2000.jpg 2000w, assets/hero-1200.jpg 1200w, assets/hero-800.jpg 800w, assets/hero-400.jpg 400w" sizes="(min-width: 992px) 50vw, 100vw">
-                        <img src="assets/hero-800.jpg" alt="Smiling dentist in a busy clinic — example outcome after working with ArmanLeads" class="hero-photo" loading="lazy" decoding="async" width="1200" height="900">
-                    </picture>
+<picture class="hero-picture" aria-hidden="false">
+  <source srcset="assets/hero-2000.jpg 2000w, assets/hero-1200.jpg 1200w, assets/hero-800.jpg 800w, assets/hero-400.jpg 400w"
+          sizes="(min-width: 992px) 45vw, (min-width: 640px) 60vw, 100vw">
+  <img src="assets/hero-800.jpg"
+       alt="Smiling dentist in a busy clinic — example outcome after working with ArmanLeads"
+       class="hero-photo"
+       loading="lazy" decoding="async" width="1200" height="900">
+</picture>
                 </div>
             </div>
         </div>
@@ -196,10 +200,14 @@
                     </p>
                 </div>
                 <div class="bio-card">
-                    <div class="bio-avatar">
-                        <img src="assets/bio.jpg" class="bio-avatar-img" alt="Arman — medical student + digital marketer" loading="lazy" width="120" height="120">
-                        AM
-                    </div>
+                    <div class="bio">
+  <div class="bio-avatar">
+    <img src="assets/bio.jpg" alt="Arman — medical student + digital marketer"
+         class="bio-avatar-img" loading="lazy" width="140" height="140"
+         onerror="this.style.display='none'; this.parentNode.classList.add('avatar-fallback')">
+    <div class="avatar-fallback" aria-hidden="true">AM</div>
+  </div>
+
                     <div class="bio-text">
                         I'm Arman â€" a medical student + digital marketer from Slemani. I combine patient psychology and targeted local ads to bring steady, high-value patients to a few select practices. I only accept 5 partners at a time so you get my full attention.
                     </div>
